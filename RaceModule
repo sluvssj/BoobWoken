@@ -1,0 +1,317 @@
+--[[
+so .4-.6 chest, .6-.8 ass, cock is .5-.8
+gremor
+.6-.9 ass is .6-.9 cock is .5-.6
+celtor
+.3-.5 chest, .4-.6 ass, .6-1 cock
+vesp
+so .1-.3 chest, .1-.3 ass, .8-1 cock
+canor
+.4-.8 chest, .2-.4 ass .6-.8 cock
+etrean
+.4-.9 chest , .4-.9 ass , .4-.9 cock
+gany
+.7-1 chest , .7-1 ass , .7-1 cock
+adret
+.5-.8 chest , .5-.8 ass , .1 - .3 cock,
+felinor,
+0 chest , 0 ass , 0 cock
+celestial
+0 chest , 0 ass , 0 cock
+lightborn
+.7-.8 chest , .6-.8 ass, 1 cock
+]]
+
+local RaceScaleData = {
+	["Gremor"] = {["Breasts"] = {.4,.6},["Ass"] = {.6,.8},["Dick"] = {.5,.8}},
+	["Celtor"] = {["Breasts"] = {.6,.9},["Ass"] = {.6,.8},["Dick"] = {.5,.8}},
+	["Vesperian"] = {["Breasts"] = {.3,.5},["Ass"] = {.4,.6},["Dick"] = {.6,1}},
+	["Canor"] = {["Breasts"] = {.1,.3},["Ass"] = {.1,.3},["Dick"] = {.8,1}},
+	["Etrean"] = {["Breasts"] = {.4,.8},["Ass"] = {.2,.4},["Dick"] = {.6,.8}},
+	["Ganymede"] = {["Breasts"] = {.4,.9},["Ass"] = {.4,.9},["Dick"] = {.4,.9}},
+	["Adret"] = {["Breasts"] = {.9,1},["Ass"] = {.9,1},["Dick"] = {.9,1}},
+	["Felinor"] = {["Breasts"] = {.5,.8},["Ass"] = {.5,.8},["Dick"] = {.1,.3}} ,
+	["Capra"] = {["Breasts"] = {.7,.8},["Ass"] = {.6,.8},["Dick"] = {1,1}},
+	-- []
+	["Chrysid"] = {["Breasts"] = {.7,1},["Ass"] = {.7,1},["Dick"] = {.7,1}},
+	["Tiran"] = {["Breasts"] = {.8,1},["Ass"] = {.8,1},["Dick"] = {.8,1}},
+	-- []
+	["Auroran"] = {["Breasts"] = {0,0},["Ass"] = {0,0},["Dick"] = {0,0}},
+	["Drakkard"] = {["Breasts"] = {0,0},["Ass"] = {0,0},["Dick"] = {0,0}},
+	["Heliodar"] = {["Breasts"] = {0,0},["Ass"] = {0,0},["Dick"] = {0,0}},
+	["Celestial"] = {["Breasts"] = {0,0},["Ass"] = {0,0},["Dick"] = {0,0}},
+	["Lightborn"] = {["Breasts"] = {0,0},["Ass"] = {0,0},["Dick"] = {0,0}},
+	-- loser races  ^
+}
+
+
+local RaceData = {
+	["Gremor"] = {
+		["Default"] = {
+			["SkinTone"] = Color3.fromRGB(113,102,84),["OtherColor"] = Color3.fromRGB(48,45,34)},
+		["Birch"] = {
+			["SkinTone"] = Color3.fromRGB(116,108,92),["OtherColor"] = Color3.fromRGB(48,42,37)},
+		["Redwood"] = {
+			["SkinTone"] = Color3.fromRGB(116,95,90),["OtherColor"] = Color3.fromRGB(48,37,37)},
+		["Aspen"] = {
+			["SkinTone"] = Color3.fromRGB(107,127,114),["OtherColor"] = Color3.fromRGB(74,83,84)},
+		["Teak"] = {
+			["SkinTone"] = Color3.fromRGB(95,75,63),["OtherColor"] = Color3.fromRGB(49,35,17)},
+		["Hallowtide"] = {
+			["SkinTone"] = Color3.fromRGB(81,74,72),["OtherColor"] = Color3.fromRGB(47,44,33)},},
+	["Celtor"] = {
+		["Default"] = {
+			["SkinTone"] = Color3.fromRGB(217,215,175),["OtherColor"] = Color3.fromRGB(65,74,59)},
+		["Otter"] = {
+			["SkinTone"] = Color3.fromRGB(168,164,158),["OtherColor"] = Color3.fromRGB(66,65,52)},
+		["Badger"] = {
+			["SkinTone"] = Color3.fromRGB(199,189,172),["OtherColor"] = Color3.fromRGB(40,39,35)},
+		["Weasel"] = {
+			["SkinTone"] = Color3.fromRGB(115,104,100),["OtherColor"] = Color3.fromRGB(70,66,55)},
+		["Hallowtide"] = {
+			["SkinTone"] = Color3.fromRGB(86,78,75),["OtherColor"] = Color3.fromRGB(0,0,0)},},
+	["Vesperian"] = {
+		["Default"] = {
+			["SkinTone"] = Color3.fromRGB(67,75,75),["OtherColor"] = Color3.fromRGB(52,56,58)},
+		["Sabaton"] = {
+			["SkinTone"] = Color3.fromRGB(68,65,63),["OtherColor"] = Color3.fromRGB(58,54,50)},
+		["Haske"] = {
+			["SkinTone"] = Color3.fromRGB(77,62,62),["OtherColor"] = Color3.fromRGB(112,100,96)},
+		["Besague"] = {
+			["SkinTone"] = Color3.fromRGB(53,47,31),["OtherColor"] = Color3.fromRGB(58,47,33)},
+		["Monster"] = {
+			["SkinTone"] = Color3.fromRGB(25,25,25),["OtherColor"] = Color3.fromRGB(25,25,25)},
+		["Nutt"] = {
+			["SkinTone"] = Color3.fromRGB(38,41,43),["OtherColor"] = Color3.fromRGB(243,243,250)},
+		["Hallowtide"] = {
+			["SkinTone"] = Color3.fromRGB(38,41,43),["OtherColor"] = Color3.fromRGB(58,54,50)},},
+	["Canor"] = {
+		["Default"] = {
+			["SkinTone"] = Color3.fromRGB(193,155,108),["OtherColor"] = Color3.fromRGB(185,87,11)},
+		["Interior"] = {
+			["SkinTone"] = Color3.fromRGB(111,112,103),["OtherColor"] = Color3.fromRGB(43,43,36)},
+		["River"] = {
+			["SkinTone"] = Color3.fromRGB(255,197,146),["OtherColor"] = Color3.fromRGB(50,50,50)},
+		["Lion"] = {
+			["SkinTone"] = Color3.fromRGB(223,172,120),["OtherColor"] = Color3.fromRGB(173,134,72)},
+		["Red"] = {
+			["SkinTone"] = Color3.fromRGB(213,177,134),["OtherColor"] = Color3.fromRGB(156,46,46)},
+		["Hallowtide"] = {
+			["SkinTone"] = Color3.fromRGB(40,40,50),["OtherColor"] = Color3.fromRGB(33,33,38)},},
+	["Etrean"] = {
+		["Default"] = {
+			["SkinTone"] = Color3.fromRGB(247,234,227),["OtherColor"] = Color3.fromRGB(230,212,212)},
+		["Viper"] = {
+			["SkinTone"] = Color3.fromRGB(247,234,227),["OtherColor"] = Color3.fromRGB(167,36,9)},
+		["Mamba"] = {
+			["SkinTone"] = Color3.fromRGB(247,238,227),["OtherColor"] = Color3.fromRGB(134,60,88)},
+		["Coral"] = {
+			["SkinTone"] = Color3.fromRGB(247,238,227),["OtherColor"] = Color3.fromRGB(254,211,56)},
+		["Hallowtide"] = {
+			["SkinTone"] = Color3.fromRGB(214,201,201),["OtherColor"] = Color3.fromRGB(209,0,0)},},
+	["Adret"] = {
+		["Default"] = {
+			["SkinTone"] = Color3.fromRGB(171,196,212),["OtherColor"] = Color3.fromRGB(82,88,126)},
+		["Seeker"] = {
+			["SkinTone"] = Color3.fromRGB(150,172,186),["OtherColor"] = Color3.fromRGB(71,75,102)},
+		["Salt"] = {
+			["SkinTone"] = Color3.fromRGB(108,115,145),["OtherColor"] = Color3.fromRGB(53,47,66)},
+		["Greymarch"] = {
+			["SkinTone"] = Color3.fromRGB(151,188,212),["OtherColor"] = Color3.fromRGB(46,48,66)},
+		["Alder"] = {
+			["SkinTone"] = Color3.fromRGB(104,117,145),["OtherColor"] = Color3.fromRGB(46,48,66)},
+		["Hallowtide"] = {
+			["SkinTone"] = Color3.fromRGB(68,72,91),["OtherColor"] = Color3.fromRGB(29,31,42)},},
+	["Ganymede"] = {
+		["Default"] = {
+			["SkinTone"] = Color3.fromRGB(0,0,0),["OtherColor"] = Color3.fromRGB(196,203,204)},
+		["Titan"] = {
+			["SkinTone"] = Color3.fromRGB(0,0,0),["OtherColor"] = Color3.fromRGB(255,205,3)},
+		["Enceladus"] = {
+			["SkinTone"] = Color3.fromRGB(22,23,40),["OtherColor"] = Color3.fromRGB(10,243,255)},
+		["Zithori"] = {
+			["SkinTone"] = Color3.fromRGB(0,0,0),["OtherColor"] = Color3.fromRGB(56,170,0)},
+		["Tethys"] = {
+			["SkinTone"] = Color3.fromRGB(47,66,71),["OtherColor"] = Color3.fromRGB(17,220,159)},
+		["Hallowtide"] = {
+			["SkinTone"] = Color3.fromRGB(38,28,53),["OtherColor"] = Color3.fromRGB(255,97,247)},},
+	["Felinor"] = {
+		["Default"] = {
+			["SkinTone"] = Color3.fromRGB(191,181,169),["OtherColor"] = Color3.fromRGB(143,133,114)},
+		["Lynx"] = {
+			["SkinTone"] = Color3.fromRGB(197,196,195),["OtherColor"] = Color3.fromRGB(143,143,143)},
+		["Panther"] = {
+			["SkinTone"] = Color3.fromRGB(45,45,50),["OtherColor"] = Color3.fromRGB(33,33,38)},
+		["Sphynx"] = {
+			["SkinTone"] = Color3.fromRGB(255,204,201),["OtherColor"] = Color3.fromRGB(242,242,255)},
+		["Par"] = {
+			["SkinTone"] = Color3.fromRGB(197,196,195),["OtherColor"] = Color3.fromRGB(143,143,143)},
+		["Hallowtide"] = {
+			["SkinTone"] = Color3.fromRGB(218,133,65),["OtherColor"] = Color3.fromRGB(255,85,0)},},
+	["Khan"] = {
+		["Default"] = {
+			["SkinTone"] = Color3.fromRGB(226,189,136),["OtherColor"] = Color3.fromRGB(216,153,51)},
+		["Silverback"] = {
+			["SkinTone"] = Color3.fromRGB(234,162,120),["OtherColor"] = Color3.fromRGB(52,50,44)},
+		["Albino"] = {
+			["SkinTone"] = Color3.fromRGB(236,209,154),["OtherColor"] = Color3.fromRGB(247,240,227)},
+		["Capuchin"] = {
+			["SkinTone"] = Color3.fromRGB(255,204,153),["OtherColor"] = Color3.fromRGB(247,240,227)},
+		["Hallowtide"] = {
+			["SkinTone"] = Color3.fromRGB(186,129,95),["OtherColor"] = Color3.fromRGB(124,0,0)},},
+	["Lightborn"] = {
+		["Default"] = {
+			["SkinTone"] = Color3.fromRGB(199,172,120),["OtherColor"] = Color3.fromRGB(239,239,239)},
+		["Gilgamesh"] = {
+			["SkinTone"] = Color3.fromRGB(199,172,120),["OtherColor"] = Color3.fromRGB(239,184,56)},
+		["Lewyn"] = {
+			["SkinTone"] = Color3.fromRGB(199,172,120),["OtherColor"] = Color3.fromRGB(131,238,179)},
+		["Leafre"] = {
+			["SkinTone"] = Color3.fromRGB(229,223,198),["OtherColor"] = Color3.fromRGB(239,239,239)},
+		["Moros"] = {
+			["SkinTone"] = Color3.fromRGB(187,179,178),["OtherColor"] = Color3.fromRGB(47,48,53)},
+		["Horror"] = {
+			["SkinTone"] = Color3.fromRGB(214,211,203),["OtherColor"] = Color3.fromRGB(255,255,255)},
+		["MrToons"] = {
+			["SkinTone"] = Color3.fromRGB(199,172,120),["OtherColor"] = Color3.fromRGB(255,255,255)},},
+	["Capra"] = {
+		["Default"] = {
+			["SkinTone"] = Color3.fromRGB(93,64,64),["OtherColor"] = Color3.fromRGB(57,51,46)},
+		["Nemit"] = {
+			["SkinTone"] = Color3.fromRGB(80,75,66),["OtherColor"] = Color3.fromRGB(57,53,47)},
+		["Jurik"] = {
+			["SkinTone"] = Color3.fromRGB(74,69,93),["OtherColor"] = Color3.fromRGB(57,51,46)},
+		["Sudo"] = {
+			["SkinTone"] = Color3.fromRGB(117,116,118),["OtherColor"] = Color3.fromRGB(50,56,81)},
+		["Hallowtide"] = {
+			["SkinTone"] = Color3.fromRGB(93,64,64),["OtherColor"] = Color3.fromRGB(33,33,33)},},
+	["Celestial"] = {
+		["Default"] = {
+			["SkinTone"] = Color3.fromRGB(186,129,95),["OtherColor"] = Color3.fromRGB(27,42,53)},},
+	["Tiran"] = {
+		["Default"] = {
+			["SkinTone"] = Color3.fromRGB(165,126,87),["OtherColor"] = Color3.fromRGB(118,29,26)},
+		["Canary"] = {
+			["SkinTone"] = Color3.fromRGB(186,143,93),["OtherColor"] = Color3.fromRGB(230,199,105)},
+		["Jay"] = {
+			["SkinTone"] = Color3.fromRGB(166,108,96),["OtherColor"] = Color3.fromRGB(61,58,98)},
+		["Crow"] = {
+			["SkinTone"] = Color3.fromRGB(77,56,58),["OtherColor"] = Color3.fromRGB(38,17,47)},
+		["Hallowtide"] = {
+			["SkinTone"] = Color3.fromRGB(76,79,88),["OtherColor"] = Color3.fromRGB(43,45,47)},},
+	["Chrysid"] = {
+		["Default"] = {
+			["SkinTone"] = Color3.fromRGB(255,247,226),["OtherColor"] = Color3.fromRGB(229,222,199)},
+		["Seer"] = {
+			["SkinTone"] = Color3.fromRGB(60,62,93),["OtherColor"] = Color3.fromRGB(57,53,95)},
+		["Devout"] = {
+			["SkinTone"] = Color3.fromRGB(186,125,125),["OtherColor"] = Color3.fromRGB(98,82,68)},
+		["Adept"] = {
+			["SkinTone"] = Color3.fromRGB(93,90,87),["OtherColor"] = Color3.fromRGB(77,74,72)},
+		["Hallowtide"] = {
+			["SkinTone"] = Color3.fromRGB(99,95,98),["OtherColor"] = Color3.fromRGB(24,34,38)},},
+	["Heliodar"] = {
+		["Default"] = {
+			["SkinTone"] = Color3.fromRGB(191,98,51),["OtherColor"] = Color3.fromRGB(124,0,0)},
+		["ScarletMark"] = {
+			["SkinTone"] = Color3.fromRGB(191,98,51),["OtherColor"] = Color3.fromRGB(124,0,0)},},
+	["Auroran"] = {
+		["Default"] = {
+			["SkinTone"] = Color3.fromRGB(255,255,255),["OtherColor"] = Color3.fromRGB(255,255,255)},},
+	["Drakkard"] = {
+		["Default"] = {
+			["SkinTone"] = Color3.fromRGB(165,126,87),["OtherColor"] = Color3.fromRGB(118,29,26)},},}
+
+
+--[[
+Felinor = {
+
+Male = {
+	Length = {0,1}
+	Girth = {0,1}
+}
+Female = {}
+Neutral = {}
+
+}
+]]
+
+for i,v in pairs(RaceData) do 
+	if not RaceScaleData[i] then
+	--	warn(i.." : Not found in scaling data, presetting w/ .5")
+		RaceScaleData[i] = {["Breasts"] = {0,1},["Ass"] = {0,1},["Dick"] = {0,1}}
+	end
+end
+
+function lerp(a,b,t) 
+	return a * (1-t) + b * t
+end
+
+local function GetNameValue(pName)
+	local value = 0
+	for index = 1, #pName do
+		local cValue = string.byte(string.sub(pName, index, index))
+		local reverseIndex = #pName - index + 1
+		value = value + cValue
+	end
+	return value
+end
+
+
+local function ScaleViaName(n,x)
+	if x and n then
+		local Min,Max = x[1],x[2]
+		local Range = {}
+		for i  = 1,20 do 
+			Range[i] = lerp(Min,Max,i/20)
+		end
+	--	warn(Range)
+		--local V = MakeChoice(20)
+		local NameValue = Range[((GetNameValue(n)) % #Range) + 1]
+		table.clear(Range)
+		return NameValue
+	end
+end
+
+
+local Functions = {
+	["RawRaceData"] = RaceData;
+	["GetRaceFromSkinTone"] = function(self,Color:Color3)
+		
+		local RoundedColor = Color3.fromRGB(
+			math.floor(Color.R*255),math.floor(Color.G*255),math.floor(Color.B*255)
+		)
+		
+		for Race,v in pairs(RaceData) do 
+			for Varient,x in pairs(v) do 
+				if x.SkinTone == RoundedColor then
+					return Race,Varient
+				end
+			end
+		end
+		
+		return nil
+	end,
+	["ScaleViaNameAndRace"] = function(self,Name:string,Race:string)
+		local ScalingValues = RaceScaleData[Race]
+		local Split = math.floor(string.len(Name)/3)
+		if not ScalingValues then
+		--	warn(tostring(Race).." : Not found in scaling data, presetting w/ 0-1")
+			ScalingValues = {["Breasts"] = {0,1},["Ass"] = {0,1},["Dick"] = {0,1}}
+		end
+		
+		local FinalData = {}
+		local x = 0
+		
+		for i,v in pairs(ScalingValues) do 
+			x+=1
+			--warn(i)
+			--print(string.sub(Name,(Split * (x - 1)),(Split*x)))
+			FinalData[i] = ScaleViaName(string.sub(Name,(Split * (x - 1)),(Split*x)),v)
+		end
+		
+		return FinalData
+	end,
+}
+
+return Functions
