@@ -1,0 +1,103 @@
+local FemaleNames =  { "Abigail", "Ada", "Alaia", "Alexandra", "Alvida", "April", "Ari", "Ariel", "Azula", "Azura", "Ayra", "Beatrice", "Berta", "Beth", "Catherine", "Catria", "Celeste", "Charlotte", "Connie", "Dana", "Desdemona", "Diamond", "Dorothy", "Echidna", "Emma", "Erin", "Estelle", "Esther", "Ethel", "Ethlyn", "Eva", "Eve", "Francesca", "Freya", "Frida", "Gabriella", "Gemma", "Gertrude", "Giana", "Gillian", "Giovanna", "Gloria", "Grace", "Gretchen", "Gretel", "Guadalupe", "Hannah", "Heather", "Helena", "Hillary", "Holly", "Iris", "Isabella", "Jane", "Jasnah", "Jennifer", "Jemima", "Joanna", "Juda", "Juliet", "July", "June", "Katara", "Katarina", "Kate", "Kiyoko", "Korra", "Lachesis", "Lomberta", "Lotte", "Lena", "Lucile", "Margaret", "Maria", "Marina", "Maude", "May", "Mia", "Miranda", "Morgan", "Nia", "Nina", "Norne", "November", "Olivia", "Ophelia", "Palla", "Patricia", "Penny", "Quinn", "Rachel", "Rebecca", "Rosa", "Rosaline", "Rose", "Ruby", "Sabrina", "Saffron", "Sapphire", "Samantha", "Sandra", "Sarah", "Sashenka", "Satu", "Shallan", "Sidura", "Silvia", "Solara", "Solveig", "Sophie", "Summer", "Susanna", "Sycorax", "Tabitha", "Taliah", "Tallulah", "Tami", "Tanya", "Tanith", "Tatiana", "Teresa", "Thalassa", "Theodora", "Theresa", "Tracey", "Ulla", "Uma", "Ursa", "Ursula", "Usha", "Valda", "Valencia", "Valentina", "Valerie", "Vanessa", "Vega", "Vera", "Veronica", "Victoria", "Vin", "Violet", "Vivian", "Wendelin", "White", "Whitney", "Willa", "Willow", "Winnie", "Xena", "Yara", "Yana", "Yvette", "Zafirah", "Zemora", "Zoe" };
+local MaleNames = { "Abel", "Adam", "Abraham", "Adolin", "Adrian", "Aesop", "Aemilius", "Ahab", "Ahmad", "Albion", "Alexander", "Ali", "Alphonse", "Amir", "Andre", "Andrew", "Anthony", "Arnald", "Arthur", "Artminas", "Azel", "Balthasar", "Bartholomew", "Benjamin", "Bernard", "Brad", "Brandon", "Brent", "Boyd", "Caliban", "Carlos", "Charles", "Christopher", "Cicero", "Clement", "Claudius", "Cole", "Colt", "Cozen", "Connor", "Cornelius", "Dalinar", "Damien", "Daniel", "Darnell", "David", "Demetrius", "Dex", "Dimitri", "Dior", "Dominic", "Donovan", "Dragon", "Drake", "Dust", "Dylan", "Edward", "Edgar", "Elijah", "Elliot", "Elk", "Emile", "Enrique", "Erik", "Ethan", "Fabian", "Falco", "Felix", "Ferdinand", "Ferguson", "Francis", "Francisco", "Frank", "Fraser", "Frederick", "Gale", "Gabriel", "Gareth", "Gavin", "George", "Geese", "Graham", "Gregor", "Grit", "Gold", "Gunther", "Hal", "Hank", "Hans", "Harley", "Harold", "Harvey", "Hayes", "Hector", "Henry", "Hiroh", "Horace", "Horatio", "Hutch", "Ian", "Inari", "Isaac", "Isaiah", "Ishmael", "Ivan", "Jack", "Jacob", "Jalen", "Jaleel", "Jamal", "James", "Jason", "Jean", "Jefe", "John", "Jonathan", "Joseph", "Joshua", "Jova", "Jovan", "Judas", "Julian", "Judeau", "Justin", "Kaido", "Kaladin", "Karl", "Kent", "Kenny", "Kevin", "Kirk", "Kelik", "Laertes", "Lance", "Larry", "Law", "Layle", "Leo", "Leon", "Leonardo", "Lewis", "Liam", "Logan", "Lucas", "Luther", "Luis", "Lugh", "Lyon", "Malachi", "Malcolm", "Malik", "Marco", "Marcellus", "Martin", "Mark", "Marshall", "Mason", "Matthew", "Maurice", "Maxos", "Mercutio", "Michael", "Moash", "Nathan", "Nate", "Neil", "Nicholas", "Noah", "Nolan", "Oliver", "Oscar", "Osric", "Otto", "Owen", "Ogma", "Pascal", "Patrick", "Peter", "Philip", "Polonius", "Prospero", "Pyron", "Quan", "Quake", "Quentin", "Quirrel", "Rasto", "Reynaldo", "Rick", "Richard", "Robert", "Rolf", "Roy", "Roby", "Rey", "Ray", "Raigh", "Samuel", "Samwise", "Santiago", "Scar", "Scott", "Socrates", "Sothe", "Sean", "Selim", "Sergei", "Seth", "Shem", "Simon", "Sinbad", "Shinon", "Shon", "Shu", "Silver", "Stanley", "Stephen", "Sven", "Teft", "Tharson", "Thomas", "Tien", "Tomas", "Tre", "Trevor", "Tybalt", "Tyler", "Valentine", "Vergil", "Victor", "Vincent", "Wallace", "Walid", "Walter", "Wax", "Wayne", "Wesley", "William", "Wilson", "Winston", "Woodrow", "Quantum", "Xavos", "Xavier", "Zach", "Zachary", "Zote", "Zeiss" };
+local Neutral =  { "Agrippa", "Alex", "Antarc", "Artemis", "Ash", "Aspen", "August", "Avery", "Axon", "Basil", "Blake", "Blue", "Briar", "Byron", "Calar", "Cameron", "Cass", "Charlie", "Chance", "Cinnabar", "Crona", "Crow", "Dawn", "Drew", "Eli", "Emery", "Envy", "Faust", "Finch", "Finley", "Fisher", "Fox", "Franky", "Faris", "Gael", "Gideon", "Gray", "Green", "Griff", "Harper", "Jackdaw", "Jay", "Jessie", "Jesse", "Kay", "Kenin", "Lyric", "Magpie", "March", "Maverick", "Murphy", "Nova", "Parker", "Payton", "Pax", "Penn", "Phoenix", "Phos", "Pike", "Pollux", "Raven", "Red", "Reed", "Rex", "Rhys", "River", "Robin", "Rook", "Roux", "Rowan", "Sage", "Saeko", "Skylar", "Slate", "Sloan", "Sparrow", "Sydney", "Taylor", "Thistle", "Quartz", "Winter" };
+-- penis
+local Players = game:GetService("Players")
+local FemenineEndings = {"a","e","i","y"} 
+
+local Exceptions = {
+	["KarliahTown"] = 1,
+	["KarliahSaved"] = 1,
+	["Pori"] = 0
+}
+
+local function GetNameValue(pName)
+	local value = 0
+	for index = 1, #pName do
+		local cValue = string.byte(string.sub(pName, index, index))
+		local reverseIndex = #pName - index + 1
+		value = value + cValue
+	end
+	return value
+end
+
+local function DetermineGender(self,Model,DeepwokenName)
+	-- 0 male
+	-- 1 female
+	-- 2 hermaphrodite (rare to get, impossible as is)
+	-- although, neutral names are more likely.
+	warn(tostring(DeepwokenName).." is calculated.")
+	if typeof(Model) == "string" then
+		if Exceptions[Model] then
+			return Exceptions[Model]
+		end
+		
+		if table.find(FemaleNames,Model) then
+			return 1
+		elseif table.find(MaleNames,Model) then
+			return 0
+		end
+		
+		
+		for i,v in pairs(FemenineEndings) do 
+		--	print(string.sub(Model,string.len(Model)))
+			if string.sub(Model,string.len(Model)) == v then
+				return 1
+			end
+		end
+		
+		local Val = ((GetNameValue(Model)) % 50) + 1
+		if Val >= 25 then
+			return 1
+		else 
+			return 0 
+		end
+		
+		
+	elseif typeof(Model) == "Instance" then
+		if Exceptions[Model.Name] then
+			return Exceptions[Model.Name]
+		end
+		local Player = Players:FindFirstChild(Model.Name)
+		if Player then -- humanoid based checks
+			if DeepwokenName then
+				if table.find(FemaleNames,DeepwokenName) then
+					return 1
+				elseif table.find(MaleNames,DeepwokenName) then
+					return 0
+				elseif table.find(Neutral,DeepwokenName) then
+					local Val = ((GetNameValue(DeepwokenName)) % 50) + 1
+					if Val >= 25 then
+						return 1
+					else 
+						return 0 
+					end
+				end			
+			end
+		end
+		
+		for i,v in pairs(Model:GetChildren()) do 
+			if v:IsA("CharacterMesh") then
+				if v.MeshId == 48112070 then
+					return 1
+				end
+			end
+		end	
+		
+		if Model:FindFirstChild("Lashes",true) then
+			return 1
+		end
+		
+		-- this is stupid
+		for i,v in pairs(FemenineEndings) do 
+	--		print(string.sub(Model.Name,string.len(Model.Name)))
+			if string.sub(Model.Name,string.len(Model.Name)) == v then
+				return 1
+			end
+		end
+	end 
+	
+	return 0
+end
+
+return {DetermineGender = DetermineGender}
