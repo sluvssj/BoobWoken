@@ -137,6 +137,14 @@ function ApplyFemBody(self,RaceData,Model)
 			NFMR.T.RT.Butt["Left Cheek"].Color = Model["Torso"].Color
 			NFMR.T.RT.Butt["Right Cheek"].Color = Model["Torso"].Color
 		end
+		for i,v in pairs(NFMR.T.RT.Bust.VisualBust:GetChildren()) do
+			if v.Name == "a" then
+				v.Transparency = 0
+				if Race then
+					v.Color = OtherColor
+				end
+			end
+		end
 
 		DressUpPart(NFMR.LL.RLL,0,PID)		
 		DressUpPart(NFMR.RL.RRL,0,PID)	
