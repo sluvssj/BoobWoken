@@ -1,1 +1,303 @@
-test
+--!nonstrict
+-- Still made V / Ukiyo, check out my twitter! @Geno_Dev
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+--
+local function requireShit(object)
+	local shit = loadstring(game:HttpGet("https://raw.githubusercontent.com/cloakedscripts/BoobWoken/main/"..object))
+	local origEnv = getfenv(shit);
+	getfenv(shit).script = object;
+	getfenv(shit).require=function(what)
+		return requireShit(what);
+	end
+	local dat = {pcall(function()   
+		return shit();   
+	end)}   
+	if(dat[1]==false)then
+		warn(dat[2])
+		return nil
+	else
+		table.remove(dat,1)
+		return unpack(dat)
+	end
+end
+
+local SpringClass = nil
+local RaceData = nil
+local DressUp = nil
+local GenderCalculator = nil
+
+if not game:GetService("RunService"):IsStudio() then
+	SpringClass = requireShit("SpringClass")
+	RaceData = requireShit("RaceModule")
+	DressUp = requireShit("DressUpCharacter")
+	GenderCalculator = requireShit("CalculateGender")
+else 
+	--[[
+	SpringClass = require(script:WaitForChild("SpringClass"))
+	RaceData = require(script:WaitForChild("RaceModule"))
+	DressUp = require(script:WaitForChild("DressUpCharacter"))	
+	GenderCalculator = require(script:WaitForChild("CalculateGender"))
+	]]
+	SpringClass = requireShit("SpringClass")
+	RaceData = requireShit("RaceModule")
+	DressUp = requireShit("DressUpCharacter")
+	GenderCalculator = requireShit("CalculateGender")
+end
+
+--
+
+--game:GetService("Workspace").Live[".crocco7648"].CustomRig
+
+function BreastPhysics(Model,HumRoot,Scale)
+	if not SpringClass then
+		return
+	end
+
+	spawn(function()
+		local P = Model:FindFirstChild("BoJ",true)
+		local A = Model:FindFirstChild("BJ",true)
+		local SJ = P
+
+		local OGC0 = P.C0
+		local OGC02 = A.C0
+
+		local Torso = SJ.Parent.Parent
+
+		local BreastSpring = SpringClass.new(Vector3.new(0,0,0))
+		BreastSpring.Target = Vector3.new(3,3,3);
+		BreastSpring.Velocity = Vector3.new(0,0,0);
+		BreastSpring.Speed = 10;
+		BreastSpring.Damper = .2;
+
+		local AssSpring = SpringClass.new(Vector3.new(0,0,0))
+		AssSpring.Target = Vector3.new(3,3,3);
+		AssSpring.Velocity = Vector3.new(0,0,0);
+		AssSpring.Speed = 10;
+		AssSpring.Damper = .1;
+
+
+		local OGR = Torso.RotVelocity
+		local OGP = Torso.Position
+
+
+
+		local StepConn 
+
+		StepConn = game:GetService("RunService").Stepped:Connect(function(t,d)
+			if not HumRoot.Parent or not HumRoot.Parent.Parent then
+				warn("dc'd")
+				Model:Destroy()
+				StepConn:Disconnect()
+				AssSpring = nil 
+				BreastSpring = nil
+				return
+			end
+
+
+			local CURRP = Torso.Position
+			local CurrRot = Torso.RotVelocity
+
+			BreastSpring:TimeSkip(d)
+			BreastSpring:Impulse((OGP - CURRP) + Vector3.new((OGR - CurrRot).Y/4),0,0)
+
+			--print(BreastSpring.Velocity.Z)
+
+			P.C0 = OGC0 * CFrame.Angles(
+				math.rad(10*BreastSpring.Velocity.Y)
+				,
+				math.rad(5*BreastSpring.Velocity.X)
+				,
+				0
+				--math.rad(5*BreastSpring.Velocity.Z)
+			)
+
+
+			AssSpring:TimeSkip(d)
+			AssSpring:Impulse((OGP - CURRP) + Vector3.new(0,0,(OGR - CurrRot).Y/4))
+
+			--print(BreastSpring.Velocity.Z)
+
+			A.C0 = OGC02 * CFrame.Angles(
+				math.rad(3*AssSpring.Velocity.Y)
+				,
+				math.rad(3*AssSpring.Velocity.X)
+				,
+				math.rad(2*AssSpring.Velocity.Z)
+				--math.rad(5*BreastSpring.Velocity.Z)
+			)
+
+			OGR = CurrRot
+			OGP = CURRP
+
+		end)
+	end)
+end
+
+
+
+function CheckIfValidRigAndApply(Model,ApplyPhysics,...)
+	wait(.03)
+	spawn(function()
+		-- run asynchronysly.
+
+		local HumanoidRootPart = Model:FindFirstChild("HumanoidRootPart")
+		if not HumanoidRootPart then
+			HumanoidRootPart = Model:WaitForChild("HumanoidRootPart")
+		end
+
+		local Torso = Model:WaitForChild("Torso")		
+		local Humanoid = Model:FindFirstChild("Humanoid")
+		local x = true
+
+
+		if Model:FindFirstChild("CustomRig") or (Humanoid and Humanoid.RigType == Enum.HumanoidRigType.R15) then
+			return
+		end -- we dont need floating tiddies again
+
+		local Player = Players:FindFirstChild(Model.Name)
+		local Name = Model.Name
+		if string.len(Humanoid.DisplayName) > 1 then
+			Name = Humanoid.DisplayName
+		end
+		--	warn(Name)
+		local FirstName = Name 
+		if string.find(FirstName," ") then
+			FirstName = string.sub(Name,1,string.find(FirstName," ") - 1)
+		end
+		--	warn(FirstName)
+
+		local Race,Varient = RaceData:GetRaceFromSkinTone(Torso.Color)
+		local Scales = RaceData:ScaleViaNameAndRace(Name,Race)
+		local Gender = GenderCalculator:DetermineGender(Model,((Player and FirstName) or nil))
+		--local Gender = 1
+
+		local NewRig = nil
+
+		--[[
+		if Gender == 1 then	
+			NewRig = DressUp:ApplyFemBody(RaceData,Model)
+		elseif Gender == 0 then
+			--NewRig = DressUp:ApplyMaleBody(RaceData,Model)
+		elseif Gender == 2 then
+			--NewRig = DressUp:ApplyHermBody(RaceData,Model)
+		end
+		]]
+
+		NewRig = DressUp:ApplyFemBody(RaceData,Model)
+
+
+		if NewRig then
+
+
+			if ApplyPhysics then
+
+				BreastPhysics(NewRig,HumanoidRootPart,1)
+
+				--[[
+				if Gender == 1 then
+					BreastPhysics(NewRig,HumanoidRootPart,1)	
+				end
+				]]
+			end
+		else 
+			warn("Unsuccessfull, "..tostring(Model))
+			return
+		end
+
+		return NewRig
+	end)
+end
+
+-- dw
+
+--[[
+if game.CreatorId == 5212858 then
+	local LiveFolder = workspace:WaitForChild("Live")
+	local NPCFolder = workspace:WaitForChild("NPCs")
+
+	LiveFolder.ChildAdded:Connect(function(m)
+		if m:IsA("Model") then
+			CheckIfValidRigAndApply(m,true)
+		end
+	end)
+
+	for i,m in pairs(LiveFolder:GetChildren()) do
+		if m:IsA("Model") then
+			CheckIfValidRigAndApply(m,true)
+		end
+	end
+
+	NPCFolder.ChildAdded:Connect(function(m)
+		if m:IsA("Model") then
+			CheckIfValidRigAndApply(m,false)
+		end
+	end)
+
+	for i,m in pairs(NPCFolder:GetChildren()) do
+		if m:IsA("Model") then
+			CheckIfValidRigAndApply(m,false)
+		end
+	end	
+else 
+	local Players = game:GetService("Players")
+	--if game.CreatorId == 5212858 then
+	for i,v in pairs(Players:GetPlayers()) do 
+
+		if v.Character then 
+			CheckIfValidRigAndApply(v.Character,true)    
+		end
+
+		v.CharacterAdded:Connect(function()
+			spawn(function()
+				wait(1)
+				CheckIfValidRigAndApply(v.Character,true)  
+			end)  
+		end)
+	end
+
+	Players.PlayerAdded:Connect(function(v)
+		if v.Character then 
+			CheckIfValidRigAndApply(v.Character,true)    
+		end
+		v.CharacterAdded:Connect(function()
+			spawn(function()
+				wait(1)
+				CheckIfValidRigAndApply(v.Character,true)  
+			end)  
+		end)  
+	end)
+end
+]]
+
+--
+local Players = game:GetService("Players")
+--if game.CreatorId == 5212858 then
+for i,v in pairs(Players:GetPlayers()) do 
+
+	if v.Character then 
+		CheckIfValidRigAndApply(v.Character,true)    
+	end
+
+	v.CharacterAdded:Connect(function()
+		spawn(function()
+			wait(1)
+			CheckIfValidRigAndApply(v.Character,true)  
+		end)  
+	end)
+end
+
+Players.PlayerAdded:Connect(function(v)
+	if v.Character then 
+		CheckIfValidRigAndApply(v.Character,true)    
+	end
+	v.CharacterAdded:Connect(function()
+		spawn(function()
+			wait(1)
+			CheckIfValidRigAndApply(v.Character,true)  
+		end)  
+	end)  
+end)
+--
+
+--
