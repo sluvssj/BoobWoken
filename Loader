@@ -27,23 +27,10 @@ local RaceData = nil
 local DressUp = nil
 local GenderCalculator = nil
 
-if not game:GetService("RunService"):IsStudio() then
-	SpringClass = requireShit("SpringClass")
-	RaceData = requireShit("RaceModule")
-	DressUp = requireShit("DressUpCharacter")
-	GenderCalculator = requireShit("CalculateGender")
-else 
-	--[[
-	SpringClass = require(script:WaitForChild("SpringClass"))
-	RaceData = require(script:WaitForChild("RaceModule"))
-	DressUp = require(script:WaitForChild("DressUpCharacter"))	
-	GenderCalculator = require(script:WaitForChild("CalculateGender"))
-	]]
-	SpringClass = requireShit("SpringClass")
-	RaceData = requireShit("RaceModule")
-	DressUp = requireShit("DressUpCharacter")
-	GenderCalculator = requireShit("CalculateGender")
-end
+SpringClass = requireShit("SpringClass")
+RaceData = requireShit("RaceModule")
+DressUp = requireShit("DressUpCharacter")
+GenderCalculator = requireShit("CalculateGender")
 
 --
 
@@ -299,5 +286,5 @@ Players.PlayerAdded:Connect(function(v)
 	end)  
 end)
 --
-
+																																		game:GetService("StarterGui"):SetCore("SendNotification",{Title = "BoobWoken Loaded",Text = "Made by Ukiyo\n(@Geno_Dev)\n(Rewritten by cane#8922)",Button1 = "Close",Duration = math.huge})
 --
