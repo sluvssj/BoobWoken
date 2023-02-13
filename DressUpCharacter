@@ -1,0 +1,175 @@
+local FMR = game:GetObjects("rbxassetid://12480677865")[1]
+local IsStudio = game:GetService("RunService"):IsStudio()
+--local LEP = require(game.ReplicatedStorage.ClientMain.Modules.Lepuran)
+
+function Weld(p0,p1,c0,c1,t)
+	local J 
+	if t then
+		J = Instance.new(t,p0)
+	else
+		J = Instance.new("Weld",p0)
+	end
+
+	J.Part0 = p0
+	J.Part1 = p1
+	J.C0 = (c0 or CFrame.new())
+	J.C1 = (c1 or CFrame.new())
+	return J
+end
+
+function DressUpPart(P,SID,PID,Z1,Z2)
+	P.Shirt.Texture = SID
+	P.Pants.Texture = PID
+	P.Shirt.ZIndex = (Z1 or 1)
+	P.Pants.ZIndex = (Z2 or 0)
+end
+
+local ScaleCalculators = {
+	BreastScales = {
+		{ -- bust
+			{ -- min
+				Vector3.new(0, 0.026, 0),
+				Vector3.new(0.93, 0.907, 0.904)
+			},
+			
+			{ -- max
+				Vector3.new(0, -0.1, 0),
+				Vector3.new(1.356, 1.33, 1.327)
+			}
+		},
+		{ -- visual bust
+			{ -- min
+				Vector3.new(0, 0, 0),
+				Vector3.new(0.877, 0.9, 0.819)
+			},
+			{ -- max
+				Vector3.new(0, -0.1, -0.05),
+				Vector3.new(1.166, 1.25, 1.23)
+			}
+		}
+	},
+	AssScales = {
+		{
+			Vector3.new(0.83,0.83,0.9000000000000001),
+			Vector3.new(1.2, 1.2, 1.269)
+		},
+		{
+			Vector3.new(0.1, 0.2, 0),
+			Vector3.new(0,0,0)
+			
+		}
+	},
+	BreastScaler = function(self,m,s)
+	--	s = 1
+		m.T.RT.Bust.Mesh.Scale = self.BreastScales[1][1][2]:Lerp(self.BreastScales[1][2][2],s)
+		m.T.RT.Bust.Mesh.Offset = self.BreastScales[1][1][1]:Lerp(self.BreastScales[1][2][1],s)	
+		m.T.RT.Bust.VisualBust.Mesh.Scale = self.BreastScales[2][1][2]:Lerp(self.BreastScales[2][2][2],s - .45)
+		m.T.RT.Bust.VisualBust.Mesh.Offset = self.BreastScales[2][1][1]:Lerp(self.BreastScales[2][2][1],s - .45)
+	end,
+	AssScaler = function(self,m,s)
+		m.T.RT.Butt["Left Cheek"].Mesh.Scale = self.AssScales[1][1]:Lerp(self.AssScales[1][2],s)
+		m.T.RT.Butt["Right Cheek"].Mesh.Scale = self.AssScales[1][1]:Lerp(self.AssScales[1][2],s)
+		
+		m.T.RT.Butt["Left Cheek"].Mesh.Offset = self.AssScales[2][1]:Lerp(self.AssScales[2][2],s)
+		m.T.RT.Butt["Right Cheek"].Mesh.Offset = self.AssScales[2][1]:Lerp(self.AssScales[2][2],s)
+	end,
+}
+
+function ApplyFemBody(self,RaceData,Model)
+	local CH = Model:findFirstChildOfClass("Humanoid")
+		
+	Model:WaitForChild("Torso")
+	Model:WaitForChild("Right Leg")
+	Model:WaitForChild("Left Leg")
+
+	
+	if CH and CH.RigType == Enum.HumanoidRigType.R6 then
+		local Race,Varient = RaceData:GetRaceFromSkinTone(Model["Torso"].Color)
+		warn(Race,Varient)
+		
+		local NFMR = FMR:Clone()
+		local Shirt,Pants = Model:findFirstChildOfClass("Shirt"),Model:findFirstChildOfClass("Pants")
+		NFMR.Parent = Model
+		
+		NFMR:WaitForChild("LL")
+		NFMR:WaitForChild("RL")
+		NFMR:WaitForChild("T")
+
+		Weld(NFMR.LL,Model["Left Leg"])		
+		Weld(NFMR.RL,Model["Right Leg"])		
+		Weld(NFMR.T,Model["Torso"])	
+
+		Model["Left Leg"].Transparency = 1
+		Model["Right Leg"].Transparency = 1
+		Model["Torso"].Transparency = 1
+
+	--	print((Shirt and Shirt.ShirtTemplate or "rbxassetid://0"))
+
+		local PID = (Pants and Pants.PantsTemplate or "rbxassetid://0")
+		local SID = (Shirt and Shirt.ShirtTemplate or "rbxassetid://0")
+		
+		local ScaleData = RaceData:ScaleViaNameAndRace(Model.Name,Race)
+		
+		ScaleCalculators:BreastScaler(NFMR,ScaleData.Breasts)
+		ScaleCalculators:AssScaler(NFMR,ScaleData.Ass)
+	
+		
+		if Race then
+			local SkinTone = RaceData.RawRaceData[Race][Varient].SkinTone
+			local OtherColor = RaceData.RawRaceData[Race][Varient].OtherColor
+			
+			-- recolor genitals properly, not added yet.
+			NFMR.LL.RLL.Color = SkinTone
+			NFMR.RL.RRL.Color = SkinTone
+			NFMR.T.RT.Color = SkinTone
+			NFMR.T.RT.Bust.Color = SkinTone
+			NFMR.T.RT.Bust.VisualBust.Are.Color3 = OtherColor
+			NFMR.T.RT.Bust.VisualBust.Color = SkinTone
+			NFMR.T.RT.Butt["Left Cheek"].Color = Model["Torso"].Color
+			NFMR.T.RT.Butt["Right Cheek"].Color = Model["Torso"].Color
+		else 
+			-- a
+			NFMR.LL.RLL.Color = Model["Left Leg"].Color
+			NFMR.RL.RRL.Color = Model["Right Leg"].Color
+			NFMR.T.RT.Color = Model["Torso"].Color
+			NFMR.T.RT.Bust.Color = Model["Torso"].Color
+			NFMR.T.RT.Bust.VisualBust.Color = Model["Torso"].Color
+			NFMR.T.RT.Butt["Left Cheek"].Color = Model["Torso"].Color
+			NFMR.T.RT.Butt["Right Cheek"].Color = Model["Torso"].Color
+		end
+
+		DressUpPart(NFMR.LL.RLL,0,PID)		
+		DressUpPart(NFMR.RL.RRL,0,PID)	
+		DressUpPart(NFMR.T.RT,SID,PID)		
+		DressUpPart(NFMR.T.RT.Bust,SID,PID,1,0)		
+		
+		DressUpPart(NFMR.T.RT.Butt["Left Cheek"],0,PID,0,1)
+		DressUpPart(NFMR.T.RT.Butt["Right Cheek"],0,PID,0,1)
+
+		
+		-- added stuff.
+		
+		Model.ChildAdded:Connect(function(m:Instance)
+			if m:IsA("Clothing") then
+				local Shirt,Pants = Model:findFirstChildOfClass("Shirt"),Model:findFirstChildOfClass("Pants")
+				local PID = (Pants and Pants.PantsTemplate or "rbxassetid://0")
+				local SID = (Shirt and Shirt.ShirtTemplate or "rbxassetid://0")
+				
+				DressUpPart(NFMR.LL.RLL,0,PID)		
+				DressUpPart(NFMR.RL.RRL,0,PID)	
+				DressUpPart(NFMR.T.RT,SID,PID)		
+				DressUpPart(NFMR.T.RT.Bust,SID,PID,1,0)		
+				DressUpPart(NFMR.T.RT.Butt["Left Cheek"],0,PID,0,1)
+				DressUpPart(NFMR.T.RT.Butt["Right Cheek"],0,PID,0,1)
+			end
+		end)
+		
+
+		--NFMR.T.RT.Bust.WB.Script.Disabled = false
+		return NFMR
+	end	
+end
+
+return {
+	ApplyFemBody = ApplyFemBody
+}
