@@ -145,6 +145,10 @@ function ApplyFemBody(self,RaceData,Model)
 				end
 			end
 		end
+		if not Pants then
+			NFMR.T.RT.bb.Transparency = 0
+			NFMR.T.RT.bb.bb.Transparency = 0
+		end
 
 		DressUpPart(NFMR.LL.RLL,0,PID)		
 		DressUpPart(NFMR.RL.RRL,0,PID)	
