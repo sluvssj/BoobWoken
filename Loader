@@ -198,7 +198,6 @@ end
 
 -- dw
 
---[[
 if game.CreatorId == 5212858 then
 	local LiveFolder = workspace:WaitForChild("Live")
 	local NPCFolder = workspace:WaitForChild("NPCs")
@@ -255,36 +254,5 @@ else
 		end)  
 	end)
 end
-]]
-
---
-local Players = game:GetService("Players")
---if game.CreatorId == 5212858 then
-for i,v in pairs(Players:GetPlayers()) do 
-
-	if v.Character then 
-		CheckIfValidRigAndApply(v.Character,true)    
-	end
-
-	v.CharacterAdded:Connect(function()
-		spawn(function()
-			wait(1)
-			CheckIfValidRigAndApply(v.Character,true)  
-		end)  
-	end)
-end
-
-Players.PlayerAdded:Connect(function(v)
-	if v.Character then 
-		CheckIfValidRigAndApply(v.Character,true)    
-	end
-	v.CharacterAdded:Connect(function()
-		spawn(function()
-			wait(1)
-			CheckIfValidRigAndApply(v.Character,true)  
-		end)  
-	end)  
-end)
---
 																																		game:GetService("StarterGui"):SetCore("SendNotification",{Title = "BoobWoken Loaded",Text = "Made by Ukiyo\n(@Geno_Dev)\n(Rewritten by cane#8922)",Button1 = "Close",Duration = math.huge})
 --
