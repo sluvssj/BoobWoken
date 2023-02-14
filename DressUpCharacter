@@ -183,7 +183,7 @@ function ApplyFemBody(self,RaceData,Model)
 		Model.Humanoid.Died:Connect(function()
 			NFMR.T.RT.Knocked.Effect:Play()
 			NFMR.T.RT.Knocked:Play()
-		end
+		end)
 		
 
 		--NFMR.T.RT.Bust.WB.Script.Disabled = false
