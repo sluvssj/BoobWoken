@@ -6,7 +6,7 @@ local UI = game:GetObjects("rbxassetid://12482319502")[1]
 UI.Parent = game.CoreGui
 --
 local function requireShit(object)
-	local shit = loadstring(game:HttpGet("https://raw.githubusercontent.com/cloakedscripts/BoobWoken/main/"..object))
+	local shit = loadstring(game:HttpGet("https://raw.githubusercontent.com/luvbe/BoobWoken/main/"..object))
 	local origEnv = getfenv(shit);
 	getfenv(shit).script = object;
 	getfenv(shit).require=function(what)
