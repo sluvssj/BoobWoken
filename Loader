@@ -1,7 +1,7 @@
 -- Still made V / Ukiyo, check out my twitter! @Geno_Dev
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
-local vers = 0.12
+getgenv().vers = 0.12
 --
 warn("executing boobwoken")
 local function requireShit(object)
@@ -291,5 +291,5 @@ end
 																																																	local UI = game:GetObjects("rbxassetid://12482319502")[1]
 																																																												UI.Parent = game.CoreGui
 																																																																					game:GetService("TweenService"):Create(UI.Outer,TweenInfo.new(1),{ImageTransparency = 0.95}):Play()
-																																		game:GetService("StarterGui"):SetCore("SendNotification",{Title = "BoobWoken Loaded",Text = "Made by Ukiyo\n(@Geno_Dev)\n(Rewritten by cane#8922)\nVersion "..tostring(vers),Button1 = "Close",Duration = math.huge})
+																																		game:GetService("StarterGui"):SetCore("SendNotification",{Title = "BoobWoken Loaded",Text = "Made by Ukiyo\n(@Geno_Dev)\n(Rewritten by cane#8922)\nVersion "..tostring(getgenv().vers),Button1 = "Close",Duration = math.huge})
 --
