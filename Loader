@@ -256,6 +256,6 @@ else
 		end)  
 	end)
 end
-game:GetService("TweenService"):Create(UI.Outer,TweenInfo.new(1),{ImageTransparency = 0.85}):Play()
+game:GetService("TweenService"):Create(UI.Outer,TweenInfo.new(1),{ImageTransparency = 0.95}):Play()
 																																		game:GetService("StarterGui"):SetCore("SendNotification",{Title = "BoobWoken Loaded",Text = "Made by Ukiyo\n(@Geno_Dev)\n(Rewritten by cane#8922)",Button1 = "Close",Duration = math.huge})
 --
