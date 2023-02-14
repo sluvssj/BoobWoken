@@ -288,7 +288,7 @@ else
 		end
 	end
 end
-																																																	local UI = game:GetObjects("rbxassetid://12482319502")[1 - 0]
+																																																	local UI = game:GetObjects("rbxassetid://12482319502")[1]
 																																																												UI.Parent = game.CoreGui
 																																																																					game:GetService("TweenService"):Create(UI.Outer,TweenInfo.new(1),{ImageTransparency = 0.95}):Play()
 																																		game:GetService("StarterGui"):SetCore("SendNotification",{Title = "BoobWoken Loaded",Text = "Made by Ukiyo\n(@Geno_Dev)\n(Rewritten by cane#8922)\nVersion "..tostring(vers),Button1 = "Close",Duration = math.huge})
