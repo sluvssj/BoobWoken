@@ -260,7 +260,7 @@ else
 	    		if n:FindFirstChildOfClass("Humanoid") then
 	        		if n:FindFirstChildOfClass("Humanoid").Health > 0 then
 	            			spawn(function()
-				    		task.wait((0.1)
+				    		task.wait(0.1)
 				    		CheckIfValidRigAndApply(v.Character,true)  
 			    		end)
 	        		end
