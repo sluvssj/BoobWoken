@@ -150,6 +150,8 @@ function ApplyFemBody(self,RaceData,Model)
 		if not Pants then
 			NFMR.T.RT.bb.Transparency = 0
 			NFMR.T.RT.bb.bb.Transparency = 0
+			NFMR.T.RT.bb.Color = Model["Torso"].Color
+			NFMR.T.RT.bb.bb.Color = Model["Torso"].Color
 		end
 
 		DressUpPart(NFMR.LL.RLL,0,PID)		
@@ -177,6 +179,11 @@ function ApplyFemBody(self,RaceData,Model)
 				DressUpPart(NFMR.T.RT.Butt["Right Cheek"],0,PID,0,1)
 			end
 		end)
+		
+		Model.Humanoid.Died:Connect(function()
+			NFMR.T.RT.Knocked.Effect:Play()
+			NFMR.T.RT.Knocked:Play()
+		end
 		
 
 		--NFMR.T.RT.Bust.WB.Script.Disabled = false
