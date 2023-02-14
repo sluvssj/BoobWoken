@@ -1,4 +1,3 @@
---!nonstrict
 -- Still made V / Ukiyo, check out my twitter! @Geno_Dev
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
