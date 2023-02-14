@@ -181,8 +181,8 @@ function ApplyFemBody(self,RaceData,Model)
 		end)
 		
 		Model.Humanoid.Died:Connect(function()
-			NFMR.T.RT.Knocked.Effect:Play()
-			NFMR.T.RT.Knocked:Play()
+			--NFMR.T.RT.Knocked.Effect:Play()
+			--NFMR.T.RT.Knocked:Play()
 		end)
 		
 
