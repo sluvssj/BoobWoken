@@ -3,6 +3,7 @@ local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 local vers = 0.11
 --
+warn("executing boobwoken")
 local function requireShit(object)
 	local shit = loadstring(game:HttpGet("https://raw.githubusercontent.com/luvbe/BoobWoken/main/"..object))
 	local origEnv = getfenv(shit);
