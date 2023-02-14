@@ -140,9 +140,11 @@ function ApplyFemBody(self,RaceData,Model)
 		for i,v in pairs(NFMR.T.RT.Bust.VisualBust:GetChildren()) do
 			if v.Name == "a" then
 				v.Transparency = 0
-				if Race then
-					v.Color = OtherColor
-				end
+				pcall(function()
+					if Race then
+						v.Color = OtherColor
+					end
+				end)
 			end
 		end
 		if not Pants then
