@@ -1,4 +1,4 @@
-local FMR = game:GetObjects("rbxassetid://12480677865")[1 - 0]
+local FMR = game:GetObjects("rbxassetid://12480677865")[1]
 local IsStudio = game:GetService("RunService"):IsStudio()
 --local LEP = require(game.ReplicatedStorage.ClientMain.Modules.Lepuran)
 
